@@ -364,3 +364,70 @@ function createPatternTexture(type, boxColor, patternColor) {
 }
 
 function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); }
+// --- LOGIC ĐẶT HÀNG ---
+
+// 1. Hàm bật/tắt Modal
+function toggleModal(show) {
+    const modal = document.getElementById('order-modal');
+    if (show) modal.classList.remove('hidden');
+    else modal.classList.add('hidden');
+}
+
+// 2. Gán sự kiện cho nút "Hoàn tất & Mua ngay"
+// (Bạn hãy sửa lại nút trong file HTML: onclick="toggleModal(true)")
+// Hoặc dùng code JS này để ghi đè:
+document.querySelector('.pt-2 button').onclick = () => toggleModal(true);
+
+// 3. Xử lý khi Submit Form
+document.getElementById('order-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Chặn load lại trang
+
+    // Thu thập dữ liệu
+    const orderData = {
+        orderId: 'DH-' + Date.now().toString().slice(-6), // Tạo mã đơn hàng tự động
+        externalOrderId: document.getElementById('external-order-id').value || 'Không có',
+        name: document.getElementById('customer-name').value,
+        phone: document.getElementById('customer-phone').value,
+        address: document.getElementById('customer-address').value,
+        // Lấy thông tin cấu hình hộp quà từ biến toàn cục 'config'
+        productDetails: `Kích thước: ${config.width}x${config.height}x${config.length}cm, 
+                         Màu hộp: ${config.boxColor}, 
+                         Ruy băng: ${config.hasRibbon ? config.ribbonColor : 'Không'}, 
+                         Họa tiết: ${config.pattern}`
+    };
+
+    // Gọi hàm xử lý (Chọn 1 trong 2 phương án bên dưới để bỏ vào đây)
+    sendOrder(orderData);
+});
+function sendOrder(data) {
+    const btnText = document.getElementById('btn-text');
+    btnText.innerText = 'Đang xử lý...';
+
+    // Thay URL bên dưới bằng URL Web App bạn vừa copy
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzWrDbtJynUER9XjBH38iEfhGuqvDOs9Vo-HzmWEl3mr3ZESsWvQ3IL5xLN2lADKle9-Q/exec';
+
+    // Google Apps Script yêu cầu gửi bằng mode 'no-cors' hoặc dùng fetch thông thường nhưng cấu trúc data đặc biệt
+    // Cách an toàn nhất để tránh lỗi CORS với Google Script là dùng fetch post text/plain
+
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // Quan trọng để browser không chặn request
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            // Vì mode no-cors nên ta không đọc được response chính xác, 
+            // nhưng nếu code chạy tới đây nghĩa là request đã đi.
+            alert('Đặt hàng thành công! Chúng tôi sẽ liên hệ sớm.\nMã đơn: ' + data.orderId);
+            toggleModal(false);
+            document.getElementById('order-form').reset();
+            btnText.innerText = 'Xác nhận đặt hàng';
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Có lỗi xảy ra, vui lòng thử lại!');
+            btnText.innerText = 'Thử lại';
+        });
+}
