@@ -2,298 +2,347 @@
 <html class="light" lang="vi">
 
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Tùy chỉnh Hộp Quà của bạn</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tùy chỉnh Hộp Quà của bạn</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 
-  <!-- Three.js Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Three.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#FF0000",
-            "background-light": "#F3F4F6",
-            "background-dark": "#111827",
-          },
-          fontFamily: {
-            display: ["Roboto", "sans-serif"],
-          },
-        },
-      },
-    };
-  </script>
-  <style>
-    .color-swatch {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.2s;
-      border: 1px solid #e5e7eb;
-      outline-offset: 2px;
-      outline-color: transparent;
-      outline-style: solid;
-      outline-width: 0px;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF0000",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Roboto", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .color-swatch {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+            outline-offset: 2px;
+            outline-color: transparent;
+            outline-style: solid;
+            outline-width: 0px;
+        }
 
-    .color-swatch:hover {
-      transform: scale(1.1);
-      border-color: #9ca3af;
-    }
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #9ca3af;
+        }
 
-    .color-swatch.active {
-      outline-color: #FF0000;
-      outline-width: 2px;
-      border-color: transparent;
-    }
+        .color-swatch.active {
+            outline-color: #FF0000;
+            outline-width: 2px;
+            border-color: transparent;
+        }
 
-    /* Swatch lớn hơn cho màu hộp */
-    #box-colors .color-swatch {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
+        /* Swatch lớn hơn cho màu hộp */
+        #box-colors .color-swatch {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
 
-    body {
-      padding-top: 64px;
-    }
+        body {
+            padding-top: 64px;
+        }
 
-    input[type="file"]::file-selector-button {
-      display: none;
-    }
+        input[type="file"]::file-selector-button {
+            display: none;
+        }
 
-    .image-item {
-      border: 2px solid transparent;
-      transition: all 0.2s;
-    }
+        .image-item {
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
 
-    .image-item.active {
-      border-color: #FF0000;
-      background-color: rgba(255, 0, 0, 0.05);
-    }
-  </style>
+        .image-item.active {
+            border-color: #FF0000;
+            background-color: rgba(255, 0, 0, 0.05);
+        }
+    </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-  <nav class="bg-[#0f172a] text-white fixed top-0 left-0 right-0 z-50 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <span class="font-bold text-xl tracking-wider">GIFITUS</span>
-        <button class="bg-primary px-4 py-2 rounded-lg hover:bg-red-600 transition shadow-lg text-sm">Giỏ hàng
-          (0)</button>
-      </div>
+    <nav class="bg-[#0f172a] text-white fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <span class="font-bold text-xl tracking-wider">GIFITUS</span>
+                <button class="bg-primary px-4 py-2 rounded-lg hover:bg-red-600 transition shadow-lg text-sm">Giỏ hàng
+                    (0)</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen p-4 sm:p-6 lg:p-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Cột Trái: 3D Preview -->
+            <div class="lg:sticky top-24 h-fit">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg flex flex-col items-center justify-center p-6 relative">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4 self-start">Xem trước 3D
+                    </h2>
+                    <div id="3d-container"
+                        class="w-full aspect-square bg-gray-100 dark:bg-gray-700 rounded-md overflow-hidden relative cursor-move">
+                        <div id="loading-text" class="absolute inset-0 flex items-center justify-center text-gray-400">
+                            Đang tải mô hình...</div>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4 mt-4">
+                        <button id="btn-rotate"
+                            class="p-2 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                            title="Tự xoay"><span class="material-icons-outlined">360</span></button>
+                        <button id="btn-reset"
+                            class="p-2 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                            title="Đặt lại"><span class="material-icons-outlined">restart_alt</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Công cụ tùy chỉnh -->
+            <div class="space-y-6 pb-12">
+
+                <!-- 1. Kích thước -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-lg font-bold mb-4">Kích thước (cm)</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div><label class="block text-sm font-medium">Cao</label><input
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
+                                id="height" type="number" value="15" min="5" max="50" /></div>
+                        <div><label class="block text-sm font-medium">Rộng</label><input
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
+                                id="width" type="number" value="20" min="5" max="50" /></div>
+                        <div><label class="block text-sm font-medium">Dài</label><input
+                                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
+                                id="length" type="number" value="20" min="5" max="50" /></div>
+                    </div>
+                </div>
+
+                <!-- 2. Màu hộp -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-lg font-bold mb-4">Màu vỏ hộp</h3>
+                    <div class="flex flex-wrap gap-3" id="box-colors">
+                        <div class="color-swatch active" style="background-color: #ffffff;" data-color="#ffffff"></div>
+                        <div class="color-swatch" style="background-color: #ef4444;" data-color="#ef4444"></div>
+                        <div class="color-swatch" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
+                        <div class="color-swatch" style="background-color: #f59e0b;" data-color="#f59e0b"></div>
+                        <div class="color-swatch" style="background-color: #10b981;" data-color="#10b981"></div>
+                        <div class="color-swatch" style="background-color: #1f2937;" data-color="#1f2937"></div>
+                    </div>
+                </div>
+
+                <!-- 3. Ruy băng -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold">Ruy băng</h3>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input checked="" class="sr-only peer" id="ribbon-toggle" type="checkbox" />
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all">
+                            </div>
+                        </label>
+                    </div>
+                    <div id="ribbon-colors" class="flex flex-wrap gap-3">
+                        <div class="color-swatch active" style="background-color: #ef4444;" data-color="#ef4444"></div>
+                        <div class="color-swatch" style="background-color: #ffffff;" data-color="#ffffff"></div>
+                        <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                        <div class="color-swatch" style="background-color: #eab308;" data-color="#eab308"></div>
+                        <div class="color-swatch" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
+                    </div>
+                </div>
+
+                <!-- 4. Họa tiết -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-lg font-bold mb-3">Họa tiết nền</h3>
+
+                    <!-- Pattern Type -->
+                    <div class="grid grid-cols-5 gap-2 mb-4" id="pattern-options">
+                        <div class="pattern-option active aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-primary flex flex-col items-center justify-center text-xs text-gray-500"
+                            data-pattern="none">
+                            <span class="material-icons-outlined mb-1">block</span> Không
+                        </div>
+                        <div class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
+                            data-pattern="stripes_v">
+                            <span class="material-icons-outlined mb-1" style="transform: rotate(90deg)">view_week</span>
+                            Sọc Dọc
+                        </div>
+                        <div class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
+                            data-pattern="hearts">
+                            <span class="material-icons-outlined mb-1">favorite</span> Tim
+                        </div>
+                        <div class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
+                            data-pattern="stripes_h">
+                            <span class="material-icons-outlined mb-1">reorder</span> Kẻ Ngang
+                        </div>
+                        <div class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
+                            data-pattern="dots">
+                            <span class="material-icons-outlined mb-1">grain</span> Chấm
+                        </div>
+                    </div>
+
+                    <!-- Pattern Color -->
+                    <h4 class="text-sm font-medium mb-2">Màu họa tiết</h4>
+                    <div class="flex flex-wrap gap-2" id="pattern-colors">
+                        <div class="color-swatch" style="background-color: #ffffff;" data-color="rgba(255,255,255,0.4)">
+                        </div>
+                        <div class="color-swatch active" style="background-color: #000000;"
+                            data-color="rgba(0,0,0,0.15)"></div>
+                        <div class="color-swatch" style="background-color: #eab308;"
+                            data-color="rgba(234, 179, 8, 0.4)"></div>
+                        <div class="color-swatch" style="background-color: #ec4899;"
+                            data-color="rgba(236, 72, 153, 0.4)"></div>
+                        <div class="color-swatch" style="background-color: #ef4444;"
+                            data-color="rgba(239, 68, 68, 0.4)"></div>
+                    </div>
+                </div>
+
+                <!-- 5. QUẢN LÝ HÌNH ẢNH -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-lg font-bold mb-4 flex justify-between items-center">
+                        Hình ảnh đã in
+                        <label
+                            class="cursor-pointer text-sm text-primary hover:text-red-700 font-medium flex items-center gap-1">
+                            <span class="material-icons-outlined text-lg">add_circle</span> Thêm hình
+                            <input class="sr-only" id="file-upload" type="file" accept="image/*" multiple />
+                        </label>
+                    </h3>
+
+                    <div id="image-list" class="space-y-2 mb-4 max-h-40 overflow-y-auto pr-1">
+                        <div class="text-sm text-gray-400 italic text-center py-2" id="no-image-text">Chưa có hình nào
+                        </div>
+                    </div>
+
+                    <div id="image-editor"
+                        class="border-t border-gray-200 dark:border-gray-700 pt-4 opacity-50 pointer-events-none transition-opacity">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Chỉnh sửa hình đang
+                                chọn</span>
+                            <button id="btn-delete-img" class="text-xs text-red-500 hover:text-red-700 font-medium">Xóa
+                                hình này</button>
+                        </div>
+
+                        <!-- Chọn Mặt -->
+                        <div class="mb-3">
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Vị trí đặt hình</label>
+                            <select id="img-face"
+                                class="block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 py-1.5 text-sm focus:ring-primary focus:border-primary">
+                                <option value="front">Mặt Trước</option>
+                                <option value="back">Mặt Sau</option>
+                                <option value="left">Cạnh Trái</option>
+                                <option value="right">Cạnh Phải</option>
+                                <option value="top">Trên Nắp Hộp</option>
+                            </select>
+                        </div>
+
+                        <!-- Move X/Y -->
+                        <div class="grid grid-cols-2 gap-4 mb-3">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Dịch Ngang (X)</label>
+                                <input id="img-pos-x" type="range" min="-15" max="15" step="0.5" value="0"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Dịch Dọc (Y)</label>
+                                <input id="img-pos-y" type="range" min="-15" max="15" step="0.5" value="0"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
+                            </div>
+                        </div>
+
+                        <!-- Scale / Rotate -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Kích thước</label>
+                                <input id="img-scale" type="range" min="0.2" max="2.0" step="0.1" value="1.0"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Xoay</label>
+                                <input id="img-rotate" type="range" min="-180" max="180" step="5" value="0"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nút Mua -->
+                <div class="pt-2">
+                    <button onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')"
+                        class="w-full bg-primary text-white font-bold py-4 px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg flex items-center justify-center">
+                        <span class="material-icons-outlined mr-2">shopping_cart</span>
+                        Hoàn tất & Mua ngay
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
-
-  <div class="min-h-screen p-4 sm:p-6 lg:p-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-      <!-- Cột Trái: 3D Preview -->
-      <div class="lg:sticky top-24 h-fit">
+    <div id="order-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden z-[60] flex items-center justify-center p-4">
         <div
-          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg flex flex-col items-center justify-center p-6 relative">
-          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4 self-start">Xem trước 3D
-          </h2>
-          <div id="3d-container"
-            class="w-full aspect-square bg-gray-100 dark:bg-gray-700 rounded-md overflow-hidden relative cursor-move">
-            <div id="loading-text" class="absolute inset-0 flex items-center justify-center text-gray-400">
-              Đang tải mô hình...</div>
-          </div>
-          <div class="flex items-center justify-center space-x-4 mt-4">
-            <button id="btn-rotate"
-              class="p-2 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-              title="Tự xoay"><span class="material-icons-outlined">360</span></button>
-            <button id="btn-reset"
-              class="p-2 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-              title="Đặt lại"><span class="material-icons-outlined">restart_alt</span></button>
-          </div>
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-md p-6 transform transition-all scale-100">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Thông tin giao hàng</h3>
+
+            <form id="order-form" class="space-y-4">
+                <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-md border border-blue-200 dark:border-blue-800">
+                    <label class="block text-sm font-bold text-blue-800 dark:text-blue-300 mb-1">
+                        Mã đơn hàng Web Quà Tặng (Đính kèm)
+                    </label>
+                    <input type="text" id="external-order-id"
+                        class="block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary focus:border-primary p-2 border text-sm"
+                        placeholder="Ví dụ: #DH12345 (Bỏ trống nếu không có)">
+                    <p class="text-xs text-gray-500 mt-1">Nhập mã đơn hàng bên web quà tặng để chúng tôi gửi gộp chung.
+                    </p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Họ và Tên</label>
+                    <input required type="text" id="customer-name"
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary focus:border-primary p-2 border"
+                        placeholder="Nguyễn Văn A">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Số điện thoại</label>
+                    <input required type="tel" id="customer-phone"
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary focus:border-primary p-2 border"
+                        placeholder="0912xxxxxx">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Địa chỉ nhận hàng</label>
+                    <textarea required id="customer-address" rows="3"
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary focus:border-primary p-2 border"
+                        placeholder="Số nhà, đường, phường/xã..."></textarea>
+                </div>
+
+                <div class="flex gap-3 mt-6">
+                    <button type="button" onclick="toggleModal(false)"
+                        class="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Hủy</button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-2 bg-primary text-white font-bold rounded-lg hover:bg-red-700 transition shadow-lg">
+                        <span id="btn-text">Xác nhận đặt hàng</span>
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
-
-      <!-- Cột Phải: Công cụ tùy chỉnh -->
-      <div class="space-y-6 pb-12">
-
-        <!-- 1. Kích thước -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h3 class="text-lg font-bold mb-4">Kích thước (cm)</h3>
-          <div class="grid grid-cols-3 gap-4">
-            <div><label class="block text-sm font-medium">Cao</label><input
-                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
-                id="height" type="number" value="15" min="5" max="50" /></div>
-            <div><label class="block text-sm font-medium">Rộng</label><input
-                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
-                id="width" type="number" value="20" min="5" max="50" /></div>
-            <div><label class="block text-sm font-medium">Dài</label><input
-                class="mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-primary"
-                id="length" type="number" value="20" min="5" max="50" /></div>
-          </div>
-        </div>
-
-        <!-- 2. Màu hộp -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h3 class="text-lg font-bold mb-4">Màu vỏ hộp</h3>
-          <div class="flex flex-wrap gap-3" id="box-colors">
-            <div class="color-swatch active" style="background-color: #ffffff;" data-color="#ffffff"></div>
-            <div class="color-swatch" style="background-color: #ef4444;" data-color="#ef4444"></div>
-            <div class="color-swatch" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
-            <div class="color-swatch" style="background-color: #f59e0b;" data-color="#f59e0b"></div>
-            <div class="color-swatch" style="background-color: #10b981;" data-color="#10b981"></div>
-            <div class="color-swatch" style="background-color: #1f2937;" data-color="#1f2937"></div>
-          </div>
-        </div>
-
-        <!-- 3. Ruy băng -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold">Ruy băng</h3>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input checked="" class="sr-only peer" id="ribbon-toggle" type="checkbox" />
-              <div
-                class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all">
-              </div>
-            </label>
-          </div>
-          <div id="ribbon-colors" class="flex flex-wrap gap-3">
-            <div class="color-swatch active" style="background-color: #ef4444;" data-color="#ef4444"></div>
-            <div class="color-swatch" style="background-color: #ffffff;" data-color="#ffffff"></div>
-            <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
-            <div class="color-swatch" style="background-color: #eab308;" data-color="#eab308"></div>
-            <div class="color-swatch" style="background-color: #3b82f6;" data-color="#3b82f6"></div>
-          </div>
-        </div>
-
-        <!-- 4. Họa tiết -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h3 class="text-lg font-bold mb-3">Họa tiết nền</h3>
-
-          <!-- Pattern Type -->
-          <div class="grid grid-cols-5 gap-2 mb-4" id="pattern-options">
-            <div
-              class="pattern-option active aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-primary flex flex-col items-center justify-center text-xs text-gray-500"
-              data-pattern="none">
-              <span class="material-icons-outlined mb-1">block</span> Không
-            </div>
-            <div
-              class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
-              data-pattern="stripes_v">
-              <span class="material-icons-outlined mb-1" style="transform: rotate(90deg)">view_week</span>
-              Sọc Dọc
-            </div>
-            <div
-              class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
-              data-pattern="hearts">
-              <span class="material-icons-outlined mb-1">favorite</span> Tim
-            </div>
-            <div
-              class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
-              data-pattern="stripes_h">
-              <span class="material-icons-outlined mb-1">reorder</span> Kẻ Ngang
-            </div>
-            <div
-              class="pattern-option aspect-square bg-gray-100 dark:bg-gray-700 rounded-md cursor-pointer border-2 border-transparent hover:border-primary flex flex-col items-center justify-center text-xs text-gray-500"
-              data-pattern="dots">
-              <span class="material-icons-outlined mb-1">grain</span> Chấm
-            </div>
-          </div>
-
-          <!-- Pattern Color -->
-          <h4 class="text-sm font-medium mb-2">Màu họa tiết</h4>
-          <div class="flex flex-wrap gap-2" id="pattern-colors">
-            <div class="color-swatch" style="background-color: #ffffff;" data-color="rgba(255,255,255,0.4)">
-            </div>
-            <div class="color-swatch active" style="background-color: #000000;" data-color="rgba(0,0,0,0.15)"></div>
-            <div class="color-swatch" style="background-color: #eab308;" data-color="rgba(234, 179, 8, 0.4)"></div>
-            <div class="color-swatch" style="background-color: #ec4899;" data-color="rgba(236, 72, 153, 0.4)"></div>
-            <div class="color-swatch" style="background-color: #ef4444;" data-color="rgba(239, 68, 68, 0.4)"></div>
-          </div>
-        </div>
-
-        <!-- 5. QUẢN LÝ HÌNH ẢNH -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h3 class="text-lg font-bold mb-4 flex justify-between items-center">
-            Hình ảnh đã in
-            <label class="cursor-pointer text-sm text-primary hover:text-red-700 font-medium flex items-center gap-1">
-              <span class="material-icons-outlined text-lg">add_circle</span> Thêm hình
-              <input class="sr-only" id="file-upload" type="file" accept="image/*" multiple />
-            </label>
-          </h3>
-
-          <div id="image-list" class="space-y-2 mb-4 max-h-40 overflow-y-auto pr-1">
-            <div class="text-sm text-gray-400 italic text-center py-2" id="no-image-text">Chưa có hình nào
-            </div>
-          </div>
-
-          <div id="image-editor"
-            class="border-t border-gray-200 dark:border-gray-700 pt-4 opacity-50 pointer-events-none transition-opacity">
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Chỉnh sửa hình đang
-                chọn</span>
-              <button id="btn-delete-img" class="text-xs text-red-500 hover:text-red-700 font-medium">Xóa
-                hình này</button>
-            </div>
-
-            <!-- Chọn Mặt -->
-            <div class="mb-3">
-              <label class="block text-xs font-medium text-gray-500 mb-1">Vị trí đặt hình</label>
-              <select id="img-face"
-                class="block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:border-gray-600 py-1.5 text-sm focus:ring-primary focus:border-primary">
-                <option value="front">Mặt Trước</option>
-                <option value="back">Mặt Sau</option>
-                <option value="left">Cạnh Trái</option>
-                <option value="right">Cạnh Phải</option>
-                <option value="top">Trên Nắp Hộp</option>
-              </select>
-            </div>
-
-            <!-- Move X/Y -->
-            <div class="grid grid-cols-2 gap-4 mb-3">
-              <div>
-                <label class="block text-xs text-gray-500 mb-1">Dịch Ngang (X)</label>
-                <input id="img-pos-x" type="range" min="-15" max="15" step="0.5" value="0"
-                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
-              </div>
-              <div>
-                <label class="block text-xs text-gray-500 mb-1">Dịch Dọc (Y)</label>
-                <input id="img-pos-y" type="range" min="-15" max="15" step="0.5" value="0"
-                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
-              </div>
-            </div>
-
-            <!-- Scale / Rotate -->
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs text-gray-500 mb-1">Kích thước</label>
-                <input id="img-scale" type="range" min="0.2" max="2.0" step="0.1" value="1.0"
-                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
-              </div>
-              <div>
-                <label class="block text-xs text-gray-500 mb-1">Xoay</label>
-                <input id="img-rotate" type="range" min="-180" max="180" step="5" value="0"
-                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Nút Mua -->
-        <div class="pt-2">
-          <button onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')"
-            class="w-full bg-primary text-white font-bold py-4 px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg flex items-center justify-center">
-            <span class="material-icons-outlined mr-2">shopping_cart</span>
-            Hoàn tất & Mua ngay
-          </button>
-        </div>
-      </div>
     </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
